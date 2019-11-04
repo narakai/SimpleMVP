@@ -1,8 +1,10 @@
-package com.fansup.fplus;
+package com.fansup.fplus.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.fansup.fplus.R;
 
 public class MainActivity extends AppCompatActivity {
 
