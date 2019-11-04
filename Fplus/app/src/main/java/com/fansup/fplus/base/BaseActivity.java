@@ -7,7 +7,6 @@ import androidx.annotation.MainThread;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Lifecycle;
 
-import com.fansup.fplus.mvp.IPresenter;
 import com.fansup.fplus.utils.RxLifecycleUtils;
 import com.uber.autodispose.AutoDisposeConverter;
 
@@ -25,14 +24,14 @@ public abstract class BaseActivity<P extends IPresenter> extends AppCompatActivi
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        setupActivityComponent();
+//        setupActivityComponent();
         mUnbinder = ButterKnife.bind(this);
-        initLifecycleObserver(getLifecycle());
         initView();
         initData();
+        initLifecycleObserver(getLifecycle());
     }
 
-    protected abstract void setupActivityComponent();
+//    protected abstract void setupActivityComponent();
 
     protected <T> AutoDisposeConverter<T> bindLifecycle() {
         return RxLifecycleUtils.bindLifecycle(this);

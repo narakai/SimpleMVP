@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.fansup.fplus.mvp;
+package com.fansup.fplus.base;
 
 
 import androidx.annotation.NonNull;
@@ -24,18 +24,15 @@ import androidx.lifecycle.LifecycleOwner;
 import com.fansup.fplus.utils.RxLifecycleUtils;
 import com.uber.autodispose.AutoDisposeConverter;
 
-public class BasePresenter<M extends IModel, V extends IView> implements IPresenter {
+public class BasePresenter<V extends IView> implements IPresenter {
     protected final String TAG = this.getClass().getSimpleName();
 
-    protected M mModel;
     protected V mRootView;
     private LifecycleOwner lifecycleOwner;
 
-    public BasePresenter(M model, V rootView) {
-        Preconditions.checkNotNull(model, "%s cannot be null");
+    public BasePresenter(V rootView) {
         Preconditions.checkNotNull(rootView, "%s cannot be null");
         this.mRootView = rootView;
-        this.mModel = model;
     }
 
     protected <T> AutoDisposeConverter<T> bindLifecycle() {
@@ -77,9 +74,6 @@ public class BasePresenter<M extends IModel, V extends IView> implements IPresen
 
     @Override
     public void onDestroy(@NonNull LifecycleOwner owner) {
-        if (mModel != null)
-            mModel.onDestroy();
-        this.mModel = null;
         this.mRootView = null;
     }
 

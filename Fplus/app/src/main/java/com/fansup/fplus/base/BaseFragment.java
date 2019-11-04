@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 
-import com.fansup.fplus.mvp.IPresenter;
 import com.fansup.fplus.utils.RxLifecycleUtils;
 import com.uber.autodispose.AutoDisposeConverter;
 
@@ -38,9 +37,9 @@ public abstract class BaseFragment<P extends IPresenter> extends Fragment implem
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         unbinder = ButterKnife.bind(this, view);
-        initLifecycleObserver(getLifecycle());
         initView(view);
         initData();
+        initLifecycleObserver(getLifecycle());
     }
 
     @Override
